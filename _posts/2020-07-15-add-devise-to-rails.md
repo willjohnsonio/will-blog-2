@@ -4,43 +4,43 @@ title: Add Devise To Rails for User Authentication
 date:  2020-07-15
 ---
 
-Devise is a Ruby Gem that is used for User Authentication in Rails Apps. It handles sign in, sign out, password security and more. You can create your own authentication system in Rails, but Devise is a trusted and powerful solution in the Rails community.
+Devise is a Ruby Gem that is used for User Authentication in Rails Apps. It handles sign-in, sign-out, password security, and more. You can create your own authentication system in Rails, but Devise is a trusted and powerful solution in the Rails community.
 
 ## Install and Set Up Devise
 
-In your Gemfile add the Devise gem save it and run bundle install in the terminal
+In your Gemfile, add the Devise gem, save it and run bundle install in the terminal.
 
 ```Ruby
 gem 'devise'
 ```
 
-After the devise is finished installing run the generator
+After the Devise is finished installing, run the generator.
 
 ```bash
 rails generate devise:install
 ```
 
-This will create two files config/initializers/devise.rb and config/locales/devise.en.yml. The terminal will then tell you of some additional manual set up.
+This will create two files `config/initializers/devise.rb` and `config/locales/devise.en.yml`. The terminal will then tell you of some additional manual setup.
 
-* Define a default url in the config/environments/developement.rb
-* Set a root route in routes.rb (this can be any valid route)
-* Add flash message to application.html.erb
+* Define a default url in the `config/environments/developement.rb`
+* Set a root route in `routes.rb` (this can be any valid route)
+* Add flash message to `application.html.erb`
 * Generate Devise views
 
-The last one important because the views that allow you to sign up and sign out using devise aren't available by default to use. I'll cover that later.
+The last one is important because the views that allow you to sign up and sign out using Devise aren't available by default to use. I'll cover that later.
 
 
 ## Create a User model Using Devise
 
-Run a generate command create a new User model with the devise authentication defaults.
+Run a generate command to create a new User model with the devise authentication defaults.
 
 ```bash
 rails generate devise User
 ```
 
-This command creates a migration file, a User model file, test files, and adds devsie_for :user to routes.rb. Which includes all of the routes to use for Devise actions. To see all the new Devise routes in the terminal run `rails routes | grep users`
+This command creates a migration file, a User model file, test files and adds `devsie_for :user` to `routes.rb`. Which includes all of the routes to use for Devise actions. To see all the new Devise routes in the terminal, run `rails routes | grep users`
 
-Let's take a look at the User model this command created. Inisde of app/models/user.rb you'll see a model with a devise method with and a lot of defaults.
+Let's take a look at the User model this command created. Inside `app/models/user.rb`, you'll see a model with a devise method with lots of defaults.
 
 ```ruby
 class User < ApplicationRecord
@@ -51,17 +51,17 @@ class User < ApplicationRecord
 end
 ```
 
-This is the list of modules devise provides out the box you can uncomment the others to use their features as well. By default you get 5 modules in your model they are:
+This is the list of modules Devise provides out of the box. You can uncomment the others to use their features as well. By default, you get 5 modules in your model they are:
 
-* Database Authenticatable - Hashes and stores passwords in the database to validate the authenticity of a user thats signing in
+* Database Authenticatable - Hashes and stores passwords in the database to validate the authenticity of a user that's signing in
 * Registerable - Signs up users and lets them edit and delete their account
 * Recoverable - Sends reset password instructions.
-* Rememberable - Lets user stay signed in bu remembering a user from a saved cookie.
+* Rememberable - Lets the user stay signed in by remembering a user from a saved cookie.
 * Validatable: Validations if email and password are present.
 
-Now that you checked the model run "rails db:migrate" to add the new User to that database table. 
+Now that you checked the model, run 'rails db:migrate' to add the new User to that database table. 
 
-Devise also provides some helper methods. One that you need is "before_action :authenticate_user!". Replace "user" with your model name if you need to. Add inside of your application contoller file.
+Devise also provides some helper methods. One that you need is "before_action :authenticate_user!". Replace "user" with your model name if you need to. Add inside of your application controller file.
 
 ```ruby
 class ApplicationController < ActionController::Base
@@ -71,15 +71,15 @@ end
 
 ## Create Devise Views
 
-Devise puts it's views inside the gem itself not into your apps files. That means you can't customize trhe views. To pull them out of Devise and into your app run:
+Devise puts its views inside of the gem itself, not into your app's files. That means you can't customize the views. To pull them out of Devise and into your app, run:
 
 ```bash
 rails generate devise:views
 ```
 
-This will create views for confirmations, passwords, regisrations, sessions and more. You can find these new views in app/views/devise.
+This will create views for confirmations, passwords, registrations sessions, and more. You can find these new views in app/views/devise.
 
-Now if you visit localhost:3000/users/signup you'll get the app/views/registrations/bew.html.erb view and you can now customize it to fit your needs.
+Now, if you visit localhost:3000/users/signup, you'll get the app/views/registrations/bew.html.erb view, and you can now customize it to fit your needs.
 
 ## Recap 
 
