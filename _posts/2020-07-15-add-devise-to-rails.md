@@ -61,7 +61,7 @@ This is the list of modules Devise provides out of the box. You can uncomment th
 
 Now that you checked the model, run 'rails db:migrate' to add the new User to that database table. 
 
-Devise also provides some helper methods. One that you need is "before_action :authenticate_user!". Replace "user" with your model name if you need to. Add inside of your application controller file.
+Devise also provides some helper methods. One that you need is `before_action :authenticate_user!`. Replace `user` with your model name if you need to. Add inside of your application controller file.
 
 ```ruby
 class ApplicationController < ActionController::Base
@@ -77,7 +77,7 @@ Devise puts its views inside of the gem itself, not into your app's files. That 
 rails generate devise:views
 ```
 
-This will create views for confirmations, passwords, registrations sessions, and more. You can find these new views in app/views/devise.
+This will create views for confirmations, passwords, registrations sessions, and more. You can find these new views in `app/views/devise`.
 
 Now, if you visit localhost:3000/users/signup, you'll get the app/views/registrations/bew.html.erb view, and you can now customize it to fit your needs.
 
@@ -87,7 +87,7 @@ In this post we:
 
 * Installed the Devise Gem
 * Created a Devise User model
-* Added the :authenticate_user! helper method 
+* Added the `:authenticate_user!` helper method 
 * Pull Devise views out of the gem and into our app to be customized
 
 Thank you for reading!
